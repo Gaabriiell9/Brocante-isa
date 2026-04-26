@@ -11,7 +11,7 @@ Site de vide-dressing minimaliste et élégant, prêt à déployer sur Vercel.
 ### Côté public
 - Grille de produits avec filtre par catégorie
 - Page détail avec galerie photos (navigation, miniatures, dots)
-- Bouton de redirection vers le groupe WhatsApp partagé
+- Deux canaux de contact : message WhatsApp direct pré-rempli avec les infos de l'article, ou lien d'invitation au groupe WhatsApp partagé
 - Statuts visuels : disponible / réservé / vendu
 - SEO : Open Graph, sitemap automatique, ISR (revalidation 30s)
 
@@ -64,10 +64,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
 NEXT_PUBLIC_SITE_NAME=Brocante d'Isabella
+NEXT_PUBLIC_WHATSAPP_NUMBER=594694295654
 NEXT_PUBLIC_WHATSAPP_GROUP_URL=https://chat.whatsapp.com/XXXXXXXXXX
 ```
 
-> Pour `NEXT_PUBLIC_WHATSAPP_GROUP_URL` : copier le lien d'invitation du groupe WhatsApp (format `https://chat.whatsapp.com/XXXXX`).
+> `NEXT_PUBLIC_WHATSAPP_NUMBER` : numéro d'Isabella en format international **sans le `+`** (ex. `594694295654` pour la Guyane française, `33612345678` pour la métropole).
+>
+> `NEXT_PUBLIC_WHATSAPP_GROUP_URL` : lien d'invitation du groupe WhatsApp (format `https://chat.whatsapp.com/XXXXX`).
 
 ### 4. Lancer en dev
 
