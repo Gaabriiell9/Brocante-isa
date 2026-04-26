@@ -11,15 +11,15 @@ interface ProductCardProps {
 
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const mainImage = product.images?.[0];
-  const isSold = product.status === 'sold';
-  const isReserved = product.status === 'reserved';
+  const isAvailable = product.status === 'available';
+  const isUnavailable = product.status === 'reserved' || product.status === 'sold';
 
   return (
     <Link
       href={`/product/${product.slug || product.id}`}
       className={clsx(
         'group block opacity-0 animate-fade-up',
-        isSold && 'pointer-events-none'
+        isUnavailable && 'pointer-events-none'
       )}
       style={{ animationDelay: `${Math.min(index * 60, 600)}ms` }}
     >
@@ -31,9 +31,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             className={clsx(
-              'object-cover transition-transform duration-700',
-              'group-hover:scale-[1.02]',
-              isSold && 'grayscale opacity-50'
+              'object-cover transition-all duration-700',
+              isAvailable && 'group-hover:scale-[1.02]',
+              isUnavailable && 'grayscale opacity-50'
             )}
           />
         ) : (
@@ -42,42 +42,32 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
         )}
 
-        {(isSold || isReserved) && (
-          <div className="absolute top-2 left-2">
-            <span
-              className={clsx(
-                'inline-block px-2 py-0.5 text-[9px] uppercase tracking-[0.15em]',
-                isSold && 'bg-ink-900 text-cream-100',
-                isReserved && 'bg-terracotta-500 text-cream-100'
-              )}
-            >
-              {isSold ? 'VENDU' : 'RÉSERVÉ'}
+        {isUnavailable && (
+          <div className="absolute top-3 left-3">
+            <span className="inline-block px-3 py-1 text-[10px] uppercase tracking-[0.15em] font-medium bg-ink-900 text-cream-100">
+              {product.status === 'sold' ? 'Vendu' : 'Réservé'}
             </span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col gap-0.5 md:gap-1">
+      <div className={clsx('flex flex-col gap-0.5 md:gap-1', isUnavailable && 'opacity-50')}>
         <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-ink-400">
           {String(index + 1).padStart(2, '0')}
           {' · '}
           {CATEGORY_LABELS[product.category]}
           {product.size && ` · ${product.size}`}
         </p>
-        <h3
-          className={clsx(
-            'font-medium text-[13px] md:text-sm text-ink-900 leading-tight transition-all duration-300',
-            'group-hover:italic'
-          )}
-        >
+        <h3 className={clsx(
+          'font-medium text-[13px] md:text-sm text-ink-900 leading-tight transition-all duration-300',
+          isAvailable && 'group-hover:italic'
+        )}>
           {product.title}
         </h3>
-        <p
-          className={clsx(
-            'font-display text-sm md:text-base',
-            isSold ? 'line-through text-ink-400' : 'text-ink-900'
-          )}
-        >
+        <p className={clsx(
+          'font-display text-sm md:text-base text-ink-900',
+          product.status === 'sold' && 'line-through'
+        )}>
           {product.price} €
         </p>
       </div>
