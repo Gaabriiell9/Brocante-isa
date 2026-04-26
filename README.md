@@ -11,8 +11,7 @@ Site de vide-dressing minimaliste et élégant, prêt à déployer sur Vercel.
 ### Côté public
 - Grille de produits avec filtre par catégorie
 - Page détail avec galerie photos (navigation, miniatures, dots)
-- Bouton de contact WhatsApp + email pré-rempli
-- Section "Déjà vendus" séparée
+- Bouton de redirection vers le groupe WhatsApp partagé
 - Statuts visuels : disponible / réservé / vendu
 - SEO : Open Graph, sitemap automatique, ISR (revalidation 30s)
 
@@ -65,11 +64,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
 NEXT_PUBLIC_SITE_NAME=Brocante d'Isabella
-NEXT_PUBLIC_WHATSAPP_NUMBER=33612345678
-NEXT_PUBLIC_CONTACT_EMAIL=isabella@exemple.com
+NEXT_PUBLIC_WHATSAPP_GROUP_URL=https://chat.whatsapp.com/XXXXXXXXXX
 ```
 
-> Pour `NEXT_PUBLIC_WHATSAPP_NUMBER` : format international **sans le `+`** (ex. `33612345678` pour la France, `594694123456` pour la Guyane).
+> Pour `NEXT_PUBLIC_WHATSAPP_GROUP_URL` : copier le lien d'invitation du groupe WhatsApp (format `https://chat.whatsapp.com/XXXXX`).
 
 ### 4. Lancer en dev
 
@@ -133,7 +131,7 @@ src/
 │   ├── ImageGallery.tsx        # Galerie page détail
 │   ├── ImageUploader.tsx       # Upload + drag-reorder
 │   ├── ProductForm.tsx         # Formulaire create/edit
-│   ├── ContactButtons.tsx      # WhatsApp + email
+│   ├── ContactButtons.tsx      # Groupe WhatsApp
 │   ├── CategoryFilter.tsx      # Filtre catégories
 │   └── LogoutButton.tsx
 ├── lib/
