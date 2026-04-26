@@ -27,7 +27,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       )}
       style={{ animationDelay: `${Math.min(index * 60, 600)}ms` }}
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-cream-200 mb-3">
+      <div className="relative aspect-[4/5] overflow-hidden bg-cream-200 mb-3">
         {mainImage ? (
           <Image
             src={mainImage}

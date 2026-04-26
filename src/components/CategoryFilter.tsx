@@ -6,13 +6,13 @@ import { CATEGORY_LABELS, type ProductCategory } from '@/types/product';
 
 const CATEGORIES: { value: ProductCategory | 'all'; label: string }[] = [
   { value: 'all', label: 'Tout' },
-  { value: 'robes', label: CATEGORY_LABELS.robes },
-  { value: 'hauts', label: CATEGORY_LABELS.hauts },
-  { value: 'bas', label: CATEGORY_LABELS.bas },
-  { value: 'chaussures', label: CATEGORY_LABELS.chaussures },
-  { value: 'sacs', label: CATEGORY_LABELS.sacs },
-  { value: 'accessoires', label: CATEGORY_LABELS.accessoires },
-  { value: 'autre', label: CATEGORY_LABELS.autre },
+  { value: 'robes', label: 'Robes' },
+  { value: 'hauts', label: 'Hauts' },
+  { value: 'bas', label: 'Bas' },
+  { value: 'chaussures', label: 'Chaussures' },
+  { value: 'sacs', label: 'Sacs' },
+  { value: 'accessoires', label: 'Access.' },
+  { value: 'autre', label: 'Autre' },
 ];
 
 export function CategoryFilter() {
@@ -32,24 +32,25 @@ export function CategoryFilter() {
   };
 
   return (
-    <div className="flex flex-wrap items-center">
-      {CATEGORIES.flatMap((cat, i) => [
-        i > 0 ? (
-          <span key={`sep-${i}`} className="text-[11px] text-ink-300 mx-2 select-none">·</span>
-        ) : null,
-        <button
-          key={cat.value}
-          onClick={() => setCategory(cat.value)}
-          className={clsx(
-            'text-[11px] uppercase tracking-[0.2em] transition-colors duration-200',
-            current === cat.value
-              ? 'text-ink-900 underline underline-offset-4'
-              : 'text-ink-500 hover:text-ink-900'
+    <div className="flex flex-wrap items-center gap-y-2">
+      {CATEGORIES.map((cat, i) => (
+        <span key={cat.value} className="flex items-center">
+          {i > 0 && (
+            <span className="text-[11px] text-ink-300 mx-2 select-none">·</span>
           )}
-        >
-          {cat.label.toUpperCase()}
-        </button>,
-      ])}
+          <button
+            onClick={() => setCategory(cat.value)}
+            className={clsx(
+              'text-[11px] uppercase tracking-[0.15em] transition-colors duration-200',
+              current === cat.value
+                ? 'text-ink-900 underline underline-offset-4'
+                : 'text-ink-500 hover:text-ink-900'
+            )}
+          >
+            {cat.label.toUpperCase()}
+          </button>
+        </span>
+      ))}
     </div>
   );
 }
