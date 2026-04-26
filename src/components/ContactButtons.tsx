@@ -38,6 +38,8 @@ export function ContactButtons({ product }: ContactButtonsProps) {
     ? `https://wa.me/${whatsappNumber}?text=${message}`
     : null;
 
+  if (!whatsappDirectUrl && !whatsappGroupUrl) return null;
+
   return (
     <div className="space-y-3">
       {whatsappDirectUrl && (
@@ -66,9 +68,11 @@ export function ContactButtons({ product }: ContactButtonsProps) {
         </a>
       )}
 
-      <p className="text-xs text-ink-500 text-center leading-relaxed pt-2">
-        Réponse rapide en privé, ou rejoignez le groupe pour découvrir toutes les pièces.
-      </p>
+      {whatsappDirectUrl && whatsappGroupUrl && (
+        <p className="text-xs text-ink-500 text-center leading-relaxed pt-2">
+          Réponse rapide en privé, ou rejoignez le groupe pour découvrir toutes les pièces.
+        </p>
+      )}
     </div>
   );
 }
