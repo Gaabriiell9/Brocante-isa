@@ -18,7 +18,6 @@ export default async function HomePage({ searchParams }: PageProps) {
   let query = supabase
     .from('products')
     .select('*')
-    .order('status', { ascending: true }) // available first
     .order('created_at', { ascending: false });
 
   if (category) {
