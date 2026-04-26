@@ -32,16 +32,16 @@ export function CategoryFilter() {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-y-2">
+    <nav className="scrollbar-none flex overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:gap-y-2">
       {CATEGORIES.map((cat, i) => (
-        <span key={cat.value} className="flex items-center">
+        <span key={cat.value} className="flex items-center shrink-0">
           {i > 0 && (
             <span className="text-[11px] text-ink-300 mx-2 select-none">·</span>
           )}
           <button
             onClick={() => setCategory(cat.value)}
             className={clsx(
-              'text-[11px] uppercase tracking-[0.15em] transition-colors duration-200',
+              'text-[11px] uppercase tracking-[0.15em] transition-colors duration-200 whitespace-nowrap',
               current === cat.value
                 ? 'text-ink-900 underline underline-offset-4'
                 : 'text-ink-500 hover:text-ink-900'
@@ -51,6 +51,6 @@ export function CategoryFilter() {
           </button>
         </span>
       ))}
-    </div>
+    </nav>
   );
 }

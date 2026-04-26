@@ -9,10 +9,6 @@ interface ProductCardProps {
   index?: number;
 }
 
-function formatIndex(n: number): string {
-  return String(n + 1).padStart(2, '0');
-}
-
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const mainImage = product.images?.[0];
   const isSold = product.status === 'sold';
@@ -27,7 +23,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       )}
       style={{ animationDelay: `${Math.min(index * 60, 600)}ms` }}
     >
-      <div className="relative aspect-[4/5] overflow-hidden bg-cream-200 mb-3">
+      <div className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-cream-200 mb-3 md:mb-4">
         {mainImage ? (
           <Image
             src={mainImage}
@@ -61,16 +57,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         )}
       </div>
 
-      <div className="flex flex-col gap-0.5">
-        <p className="text-[10px] uppercase tracking-[0.25em] text-ink-400">
-          {formatIndex(index)}
+      <div className="flex flex-col gap-0.5 md:gap-1">
+        <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-ink-400">
+          {String(index + 1).padStart(2, '0')}
           {' · '}
-          {CATEGORY_LABELS[product.category].toUpperCase()}
+          {CATEGORY_LABELS[product.category]}
           {product.size && ` · ${product.size}`}
         </p>
         <h3
           className={clsx(
-            'font-medium text-sm text-ink-900 leading-snug transition-all duration-300',
+            'font-medium text-[13px] md:text-sm text-ink-900 leading-tight transition-all duration-300',
             'group-hover:italic'
           )}
         >
@@ -78,7 +74,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </h3>
         <p
           className={clsx(
-            'font-display text-base',
+            'font-display text-sm md:text-base',
             isSold ? 'line-through text-ink-400' : 'text-ink-900'
           )}
         >

@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: PageProps) {
     <>
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 md:px-10 py-10 md:py-16">
+      <main className="max-w-6xl mx-auto px-4 md:px-12 py-10 md:py-16">
         <Link
           href="/"
           className="inline-flex items-center gap-1 text-sm text-ink-500 hover:text-ink-900 mb-8 transition-colors group"

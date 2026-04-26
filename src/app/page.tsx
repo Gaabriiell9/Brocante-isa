@@ -29,29 +29,27 @@ export default async function HomePage({ searchParams }: PageProps) {
 
   const items: Product[] = error ? [] : products || [];
   const available = items.filter((p) => p.status !== 'sold');
-  const colsClass =
-    available.length <= 3
-      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-      : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
 
   return (
     <>
       <Header />
 
-      <div className="border-b border-ink-800/10">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <span className="text-[11px] uppercase tracking-[0.15em] text-ink-500 shrink-0">
-            — {items.length} ARTICLE{items.length !== 1 ? 'S' : ''}
-          </span>
-          <CategoryFilter />
+      <section className="border-b border-ink-800/10 py-4 md:py-5">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <p className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-ink-500 whitespace-nowrap shrink-0">
+              — {available.length} ARTICLE{available.length > 1 ? 'S' : ''}
+            </p>
+            <CategoryFilter />
+          </div>
         </div>
-      </div>
+      </section>
 
-      <main className="max-w-[1600px] mx-auto px-6 md:px-10 py-12">
+      <main className="max-w-[1600px] mx-auto px-4 md:px-12 py-10 md:py-12">
         {items.length > 0 ? (
           <section
             id="products"
-            className={`grid gap-x-5 gap-y-16 md:gap-y-20 ${colsClass}`}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-5 gap-y-12 md:gap-y-16"
           >
             {items.map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />
