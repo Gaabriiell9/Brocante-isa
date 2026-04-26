@@ -38,19 +38,6 @@ export default async function HomePage({ searchParams }: PageProps) {
     <>
       <Header />
 
-      <section className="border-b border-ink-800/10 py-12 md:py-20">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <div className="flex items-baseline justify-between gap-6 flex-wrap">
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-ink-900 leading-none tracking-tight">
-              Édition <em className="italic text-terracotta-600">№01</em>
-            </h1>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-ink-500">
-              Printemps 2026 · Bordeaux + Guyane
-            </p>
-          </div>
-        </div>
-      </section>
-
       <div className="border-b border-ink-800/10">
         <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <span className="text-[11px] uppercase tracking-[0.15em] text-ink-500 shrink-0">
